@@ -1,1 +1,6 @@
 site_name: My Docs
+theme:
+  material
+nav:
+  - Home: index.md
+  - Page: page.md
