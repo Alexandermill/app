@@ -7,16 +7,17 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: my-python-app
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  publish-image:
+  build-and-push-image:
     name: Publish docker image
     if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
