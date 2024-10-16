@@ -4,3 +4,4 @@ theme:
 nav:
   - Home: index.md
   - Page: page.md
+  - Deploy: page2.md
