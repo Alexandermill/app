@@ -51,3 +51,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: | 
+            docker stop mkdocs
+            docker pull ghcr.io/alexandermill/app:latest
+            docker run -d -p 8000:8000 --name mkdocs ghcr.io/alexandermill/app
