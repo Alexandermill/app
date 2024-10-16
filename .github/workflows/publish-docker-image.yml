@@ -61,5 +61,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
             docker stop mkdocs
+            docker rm mkdocs
             docker pull ghcr.io/alexandermill/app:latest
             docker run -d -p 8000:8000 --name mkdocs ghcr.io/alexandermill/app
