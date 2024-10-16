@@ -56,9 +56,11 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
+          port: 422
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
             docker stop mkdocs
+            docker rm mkdocs
             docker pull ghcr.io/alexandermill/app:latest
             docker run -d -p 8000:8000 --name mkdocs ghcr.io/alexandermill/app
